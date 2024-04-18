@@ -649,17 +649,6 @@ static int joypad_adc_setup(struct device *dev, struct joypad *joypad)
 
 		switch (nbtn) {
 			case 0:
-				adc->report_type = ABS_RY;
-				if (device_property_read_u32(dev,
-					"abs_ry-p-tuning",
-					&adc->tuning_p))
-					adc->tuning_p = ADC_TUNING_DEFAULT;
-				if (device_property_read_u32(dev,
-					"abs_ry-n-tuning",
-					&adc->tuning_n))
-					adc->tuning_n = ADC_TUNING_DEFAULT;
-				break;
-			case 1:
 				adc->report_type = ABS_RX;
 				if (device_property_read_u32(dev,
 					"abs_rx-p-tuning",
@@ -670,18 +659,18 @@ static int joypad_adc_setup(struct device *dev, struct joypad *joypad)
 					&adc->tuning_n))
 					adc->tuning_n = ADC_TUNING_DEFAULT;
 				break;
-			case 2:
-				adc->report_type = ABS_Y;
+			case 1:
+				adc->report_type = ABS_RY;
 				if (device_property_read_u32(dev,
-					"abs_y-p-tuning",
+					"abs_ry-p-tuning",
 					&adc->tuning_p))
 					adc->tuning_p = ADC_TUNING_DEFAULT;
 				if (device_property_read_u32(dev,
-					"abs_y-n-tuning",
+					"abs_ry-n-tuning",
 					&adc->tuning_n))
 					adc->tuning_n = ADC_TUNING_DEFAULT;
 				break;
-			case 3:
+			case 2:
 				adc->report_type = ABS_X;
 				if (device_property_read_u32(dev,
 					"abs_x-p-tuning",
@@ -689,6 +678,17 @@ static int joypad_adc_setup(struct device *dev, struct joypad *joypad)
 					adc->tuning_p = ADC_TUNING_DEFAULT;
 				if (device_property_read_u32(dev,
 					"abs_x-n-tuning",
+					&adc->tuning_n))
+					adc->tuning_n = ADC_TUNING_DEFAULT;
+				break;
+			case 3:
+				adc->report_type = ABS_Y;
+				if (device_property_read_u32(dev,
+					"abs_y-p-tuning",
+					&adc->tuning_p))
+					adc->tuning_p = ADC_TUNING_DEFAULT;
+				if (device_property_read_u32(dev,
+					"abs_y-n-tuning",
 					&adc->tuning_n))
 					adc->tuning_n = ADC_TUNING_DEFAULT;
 				break;
